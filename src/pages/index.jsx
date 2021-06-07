@@ -20,7 +20,6 @@ export const HomePage = () => {
     updatedData.forEach((ele) => {
       ele.aqi = parseFloat(ele.aqi).toFixed(2);
       ele.timestamp = new Date().toString();
-      ele.formattedTime = timeSince(new Date(ele.timestamp));
       ele.key = `${ele.city}`;
     });
 
@@ -44,6 +43,9 @@ export const HomePage = () => {
     selectedCity,
   };
 
+  data.forEach((ele) => {
+    ele.formattedTime = timeSince(new Date(ele.timestamp));
+  });
   return (
     <div>
       <Chart {...chartProps} />
